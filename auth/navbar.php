@@ -1,13 +1,13 @@
 <?php 
 
 if(!isset($_SESSION['id'])){
-  header("location: /project/?session");
+  header("location: /?session");
 }
 ?>
 
 <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
     <div class="container">
-      <a href="/project/auth/" class="navbar-brand ml-2">
+      <a href="/auth/" class="navbar-brand ml-2">
         <img src="../assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
         <span class="brand-text font-weight-light ml-2"><b>Linose</b>-<em>Stodio</em></span>
