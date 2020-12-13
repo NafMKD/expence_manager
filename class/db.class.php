@@ -6,15 +6,15 @@
 class db
 {
 	
-	private $host = "localhost";
+	/*private $host = "localhost";
 	private $user = "root";
 	private $pwd = "";
 	private $dbname = "project";
-	/*
-	private $host = "sql2.freemysqlhosting.net";
-	private $user = "sql2371060";
-	private $pwd = "cV8%aQ6*";
-	private $dbname = "sql2371060";*/
+	*/
+	private $host = "remotemysql.com";
+	private $user = "KXH2lfLQyx";
+	private $pwd = "zQ1DhT9T9u";
+	private $dbname = "KXH2lfLQyx";
 
 	public function conn(){
 		$db = mysqli_connect($this->host, $this->user, $this->pwd, $this->dbname);
