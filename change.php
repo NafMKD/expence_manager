@@ -7,6 +7,10 @@ if (!isset($_GET['email']) || !isset($_GET['token'])) {
   header("location: /?session");
 }
 
+if (!isset($_GET['email']) && !isset($_GET['token'])) {
+  header("location: /?session");
+}
+
 $arrUser = $obj_fetch->fethUserDeail("EMAIL", $_GET['email'])[0];
 
 if ($_GET['token'] != md5($arrUser['password'])) {
