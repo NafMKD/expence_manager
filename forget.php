@@ -9,9 +9,9 @@ if (isset($_POST['btnSendCode'])) {
   $email = $_POST['email'];
   $recmsgone = $obj_fetch->emailChecker($email);
 
-  $obj_fetch->sendPassEmail($email);
 
   if ($recmsgone == 1) {
+    $obj_fetch->sendPassEmail($email);
     header("location: forget.php?email=".$email."");
   }else{
     $msg = "There is no account in this email.";

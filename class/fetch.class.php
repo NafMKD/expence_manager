@@ -326,15 +326,15 @@ class fetch extends db
 			$mail->isSMTP();                                      
 			$mail->Host = 'smtp.gmail.com';  
 			$mail->SMTPAuth = true;                              
-			$mail->Username = $this->email;                
-			$mail->Password = $this->pass;                           
+			$mail->Username = $this->emailSend;                
+			$mail->Password = $this->passSend;                           
 			$mail->SMTPSecure = 'tls';                            
 			$mail->Port = 587;                                    
 
 			//fetching data 
 			$userData = $this->fethUserDeail("EMAIL", $email)[0];
 
-			$mail->setFrom($this->email, 'Expense Manager');
+			$mail->setFrom($this->emailSend, 'Expense Manager');
 			$mail->addAddress($email, $userData['fullName']);   
 
 			$mail->isHTML(true); 

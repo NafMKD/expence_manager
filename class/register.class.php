@@ -36,15 +36,16 @@ class register extends db
 
 			// sending email
 			$mail = new PHPMailer;
+
 			$mail->isSMTP();                                      
 			$mail->Host = 'smtp.gmail.com';  
 			$mail->SMTPAuth = true;                              
-			$mail->Username = $this->email;                
-			$mail->Password = $this->pass;                           
+			$mail->Username = $this->emailSend;                
+			$mail->Password = $this->passSend;                           
 			$mail->SMTPSecure = 'tls';                            
 			$mail->Port = 587;                                    
 
-			$mail->setFrom($this->email, 'Expense Manager');
+			$mail->setFrom($this->emailSend, 'Expense Manager');
 			$mail->addAddress($email, $fullName);   
 
 			$mail->isHTML(true); 
@@ -77,13 +78,17 @@ class register extends db
 		// appling md5 hash to password string 
 		$password = md5($password);
 
-		$fetchUser = new fetch;
+		
 
 		//checking the email 
 
-		$userInfo = $fetchUser->fethUserDeail("EMAIL", $email);
+		$arrayF = array();
+		$queryF = mysqli_query($this->conn(),"SELECT * FROM user_detail WHERE email = '$email' ");
+		while ($rowF = mysqli_fetch_assoc($queryF)) {
+			$arrayF[] = $rowF ;
+		}
 
-		if (count($userInfo) > 0) {
+		if (count($arrayF) > 0) {
 			return 2;
 		}else{
 
