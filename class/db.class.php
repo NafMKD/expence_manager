@@ -16,6 +16,9 @@ class db
 	private $pwd = "zQ1DhT9T9u";
 	private $dbname = "KXH2lfLQyx";
 
+	protected $email = 'guchemenberu32@gmail.com';
+	protected $pass = 'gugu1621M';
+
 	public function conn(){
 		$db = mysqli_connect($this->host, $this->user, $this->pwd, $this->dbname);
 

@@ -39,12 +39,12 @@ class register extends db
 			$mail->isSMTP();                                      
 			$mail->Host = 'smtp.gmail.com';  
 			$mail->SMTPAuth = true;                              
-			$mail->Username = EMAIL;                
-			$mail->Password = PASS;                           
+			$mail->Username = $this->email;                
+			$mail->Password = $this->pass;                           
 			$mail->SMTPSecure = 'tls';                            
 			$mail->Port = 587;                                    
 
-			$mail->setFrom(EMAIL, 'Expense Manager');
+			$mail->setFrom($this->email, 'Expense Manager');
 			$mail->addAddress($email, $fullName);   
 
 			$mail->isHTML(true); 
