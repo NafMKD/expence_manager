@@ -119,17 +119,19 @@ class register extends db
 		
 
 		//checking the email 
-
+		$arrayF = array();
 		$queryF = mysqli_query($this->conn(),"SELECT * FROM user_detail WHERE email = '$email' ");
 		$rowF = mysqli_fetch_assoc($queryF);
-		print_r($rowF);
+		while ($rowF = mysqli_fetch_assoc($queryF)){
+			$arrayF[] = $rowF;
+		}
 
-		if (count($rowF) > 0) {
+		if (count($arrayF) > 0) {
 			return 2;
 		}else{
 
 			// preparing query
-			$query = "INSERT INTO user_detail(fullName, email, password, dateReg) VALUES('$fullName', '$email', '$password', '$date')";
+			$query = "INSERT INTO user_detail(fullName, email, password, accStat, emailCode, passCode, dateReg, loginLog) VALUES('$fullName', '$email', '$password', 0, 0, 0, '$date', '')";
 
 			// sending request and inserting data
 			if(mysqli_query($this->conn(), $query)){
