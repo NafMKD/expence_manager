@@ -1,6 +1,9 @@
 <?php
 
 /**
+ * @author Nafiyad Menberu (@nafMKD)
+ *
+ * 
  * Database Connection
  */
 class db
@@ -19,7 +22,7 @@ class db
 	protected $emailSend = 'guchemenberu32@gmail.com';
 	protected $passSend = 'gugu1621M';
 
-	public function conn(){
+	protected function conn(){
 		$db = mysqli_connect($this->host, $this->user, $this->pwd, $this->dbname);
 
 		if(!$db){

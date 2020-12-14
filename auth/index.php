@@ -68,7 +68,7 @@ session_start();
       <b>Version</b> 1.0.0
     </div>
 
-    <strong>Copyright &copy; 2020 <a href="https://linose-studio.herkuapp.com"><b>Linose</b> - <em>Studio</em></a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2020 <a href="https://saba-studio.herkuapp.com"><b>Saba</b> - <em>Studio</em></a>.</strong> All rights reserved.
   </footer>
 </div>
 

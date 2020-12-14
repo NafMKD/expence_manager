@@ -51,13 +51,55 @@ class register extends db
 			$mail->isHTML(true); 
 
 			$mail->Subject = 'Verify Your Email Address!';
-			$mail->Body    = 'Verification code <b>'.$random.'</b>';
-			$mail->AltBody = 'use this link to insert the verification code <a href="http://expensem.herokuapp.com/email.php?email='.$email.'"> click here </a>';
+			$mail->Body    = 'Verification code <b>'.$random.'</b> \n\n\n 
+					use this link to insert the verification code <a href="http://expensem.herokuapp.com/email.php?email='.$email.'"> click here </a>
+			';
 
 			$mail->send();
 
 			// inserting to db
 			mysqli_query($this->conn(), "UPDATE user_detail SET emailCode = '$random' WHERE email = '$email'");
+		
+	}
+
+	/**
+	 * Send Verification Email
+	 * @param string $fullName -> Full Name of The User
+	 * @param email $email -> Email of the user Also Email use as username in login time
+	 */
+	public function sendPassEmail($email){
+
+			// generating random number 
+			$random = mt_rand(100000, 999999);
+
+			// sending email
+			$mail = new PHPMailer;
+			$mail->isSMTP();                                      
+			$mail->Host = 'smtp.gmail.com';  
+			$mail->SMTPAuth = true;                              
+			$mail->Username = $this->emailSend;                
+			$mail->Password = $this->passSend;                           
+			$mail->SMTPSecure = 'tls';                            
+			$mail->Port = 587;                                    
+
+			//fetching data 
+			$userDataquery = mysqli_query($this->conn(),"SELECT * FROM user_detail WHERE email = '$email' ");
+			$userData = mysqli_fetch_assoc($userDataquery);
+
+			$mail->setFrom($this->emailSend, 'Expense Manager');
+			$mail->addAddress($email, $userData['fullName']);   
+
+			$mail->isHTML(true); 
+
+			$mail->Subject = 'Password Reset!';
+			$mail->Body    = 'Verification code <b>'.$random.'</b> \n\n\n 
+					use this link to insert the verification code <a href="http://expensem.herokuapp.com/change.php?email='.$email.'&token='.md5($userData['password']).'> click here </a>
+			';
+
+			$mail->send();
+
+			// inserting to db
+			mysqli_query($this->conn(), "UPDATE user_detail SET passCode = '$random' WHERE email = '$email'");
 		
 	}
 
@@ -82,13 +124,10 @@ class register extends db
 
 		//checking the email 
 
-		$arrayF = array();
 		$queryF = mysqli_query($this->conn(),"SELECT * FROM user_detail WHERE email = '$email' ");
-		while ($rowF = mysqli_fetch_assoc($queryF)) {
-			$arrayF[] = $rowF ;
-		}
+		$rowF = mysqli_fetch_assoc($queryF);
 
-		if (count($arrayF) > 0) {
+		if (count($rowF) > 0) {
 			return 2;
 		}else{
 

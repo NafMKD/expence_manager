@@ -8,9 +8,9 @@ if(!isset($_SESSION['id'])){
 <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
     <div class="container">
       <a href="/auth/" class="navbar-brand ml-2">
-        <img src="../assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+        <img src="../assets/dist/img/sLogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
-        <span class="brand-text font-weight-light ml-2"><b>Linose</b>-<em>Stodio</em></span>
+        <span class="brand-text font-weight-light ml-2"><b>Saba</b>-<em>Stodio</em></span>
       </a>
       
       <input type="hidden" name="UserIDForInsert" value="<?php echo $_SESSION['id']; ?>">

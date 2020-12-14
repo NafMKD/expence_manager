@@ -35,7 +35,7 @@ if (isset($_POST['btnVerify'])) {
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>Linose</b>-Studio</a>
+    <a href="#"><b>Saba</b>-Studio</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">

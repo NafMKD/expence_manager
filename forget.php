@@ -2,6 +2,7 @@
 session_start();
 include 'auto.php';
 $obj_fetch = new fetch;
+$obj_register = new register;
 
 ###############################################
 //first step
@@ -11,7 +12,7 @@ if (isset($_POST['btnSendCode'])) {
 
 
   if ($recmsgone == 1) {
-    $obj_fetch->sendPassEmail($email);
+    $obj_register->sendPassEmail($email);
     header("location: forget.php?email=".$email."");
   }else{
     $msg = "There is no account in this email.";
@@ -49,7 +50,7 @@ if (isset($_POST['btnVerify'])) {
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>Linose</b>-Studio</a>
+    <a href="#"><b>Saba</b>-Studio</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
