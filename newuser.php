@@ -89,7 +89,7 @@ if (isset($_POST['btnSignup'])) {
         <a href="forget.php">I forgot my password</a>
       </p>
       <p class="mb-0">
-        <a href="/project/" class="text-center">i have account</a>
+        <a href="/" class="text-center">i have account</a>
       </p>
     </div>
     <!-- /.login-card-body -->

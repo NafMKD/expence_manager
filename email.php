@@ -101,7 +101,7 @@ if (isset($_POST['btnVerify'])) {
         <a href="newuser.php" class="text-center">Register a new membership</a>
       </p>
       <p class="mb-0">
-        <a href="/project/" class="text-center">Log in</a>
+        <a href="/" class="text-center">Log in</a>
       </p>
     </div>
     <!-- /.login-card-body -->

@@ -121,7 +121,7 @@ if (isset($_POST['btnVerify'])) {
       </form>
 
       <p class="mb-1">
-        <a href="/project/">Log in</a>
+        <a href="/">Log in</a>
       </p>
       <p class="mb-0">
         <a href="newuser.php" class="text-center">Register a new membership</a>

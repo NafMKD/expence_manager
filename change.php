@@ -4,13 +4,13 @@ include 'auto.php';
 $obj_fetch = new fetch;
 $obj_update = new update;
 if (!isset($_GET['email']) || !isset($_GET['token'])) {
-  header("location: /project/?session");
+  header("location: /?session");
 }
 
 $arrUser = $obj_fetch->fethUserDeail("EMAIL", $_GET['email'])[0];
 
 if ($_GET['token'] != md5($arrUser['password'])) {
-  header("location: /project/?token");
+  header("location: /?token");
 }
 
 echo $arrUser['id'];
@@ -92,7 +92,7 @@ if (isset($_POST['btnChange'])) {
       </form>
 
       <p class="mb-0">
-        <a href="/project/" class="text-center">Log in</a>
+        <a href="/" class="text-center">Log in</a>
       </p>
     </div>
     <!-- /.login-card-body -->
