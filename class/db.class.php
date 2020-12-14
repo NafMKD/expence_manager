@@ -27,6 +27,8 @@ class db
 
 		if(!$db){
 			echo "Database Connection Error".mysqli_connect_error($db);
+		}else{
+			echo "yes";
 		}
 		return $db;
 	}
