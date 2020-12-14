@@ -47,3 +47,8 @@ if (version_compare(PHP_VERSION, '5.1.2', '>=')) {
         PHPMailerAutoload($classname);
     }
 }
+
+define('EMAIL', 'guchemenberu32@gmail.com');
+define('PASS', 'gugu1621M');
+
+
