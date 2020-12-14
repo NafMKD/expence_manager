@@ -1,5 +1,7 @@
 <?php 
 
+require 'PHPMailerAutoload.php';
+require 'fetch.class.php';
 /**
  * @author Nafiyad Menberu (@nafMKD)
  *
@@ -22,6 +24,43 @@ class register extends db
 	############################################################################
 	// Public Use
 
+
+	/**
+	 * Send Verification Email
+	 * @param string $fullName -> Full Name of The User
+	 * @param email $email -> Email of the user Also Email use as username in login time
+	 */
+	public function sendEmail($email, $fullName){
+
+			// generating random number 
+			$random = mt_rand(100000, 999999);
+
+			// sending email
+			$mail = new PHPMailer;
+			$mail->isSMTP();                                      
+			$mail->Host = 'smtp.gmail.com';  
+			$mail->SMTPAuth = true;                              
+			$mail->Username = 'guchemenberu32@gmail.com';                
+			$mail->Password = 'gugu1621M';                           
+			$mail->SMTPSecure = 'tls';                            
+			$mail->Port = 587;                                    
+
+			$mail->setFrom('guchemenberu32@gmail.com', 'Expence Manager');
+			$mail->addAddress($email, $fullName);   
+
+			$mail->isHTML(true); 
+
+			$mail->Subject = 'Verify Your Email Address!';
+			$mail->Body    = 'Verification code <b>'.$random.'</b>';
+			$mail->AltBody = 'use this link to insert the verification code <a href="http://expensem.herokuapp.com/email.php?email='.$email.'"> click here </a>';
+
+			$mail->send();
+
+			// inserting to db
+			mysqli_query($this->conn(), "UPDATE user_detail SET emailCode = '$random' WHERE email = '$email'");
+		
+	}
+
 	/**
 	 * Insert New User To DataBase
 	 * @param string $fullName -> Full Name of The User
@@ -39,15 +78,29 @@ class register extends db
 		// appling md5 hash to password string 
 		$password = md5($password);
 
-		// preparing query
-		$query = "INSERT INTO user_detail(fullName, email, password, dateReg) VALUES('$fullName', '$email', '$password', '$date')";
+		$fetchUser = new fetch;
 
-		// sending request and inserting data
-		if(mysqli_query($this->conn(), $query)){
-			return 1;
+		//checking the email 
+
+		$userInfo = $fetchUser->fethUserDeail("EMAIL", $email);
+
+		if (count($userInfo) > 0) {
+			return 2;
 		}else{
-			return 0;
+
+			// preparing query
+			$query = "INSERT INTO user_detail(fullName, email, password, dateReg) VALUES('$fullName', '$email', '$password', '$date')";
+
+			// sending request and inserting data
+			if(mysqli_query($this->conn(), $query)){
+				$this->sendEmail($email, $fullName);
+				header("location: email.php?email=".$email."");
+			}else{
+				return 0;
+			}
+
 		}
+		
 	}
 
 	/**

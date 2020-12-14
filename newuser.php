@@ -45,7 +45,11 @@ if (isset($_POST['btnSignup'])) {
           <div class='alert alert-danger'>
             <center>
               <i class='icon fa fa-times-circle'></i>
-              <?php echo $msg; ?>
+              <?php if($msg == 2): ?>
+                There is an existing account with this email address!
+              <?php elseif($msg == 0):?>
+                Something went wrong, please retry again! 
+              <?php endif?>
               <br>
             </center>
           </div>

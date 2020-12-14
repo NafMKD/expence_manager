@@ -46,7 +46,7 @@ if(isset($_POST['btnLogin'])){
           <div class='alert alert-danger'>
             <center>
               <i class='icon fa fa-times-circle'></i>
-              <?php echo $msg; ?>
+              <?php $msg; ?>
               <br>
             </center>
           </div>

@@ -9,6 +9,8 @@ if (isset($_POST['btnSendCode'])) {
   $email = $_POST['email'];
   $recmsgone = $obj_fetch->emailChecker($email);
 
+  $obj_fetch->sendPassEmail($email);
+
   if ($recmsgone == 1) {
     header("location: forget.php?email=".$email."");
   }else{

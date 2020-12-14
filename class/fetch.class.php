@@ -1,7 +1,10 @@
 <?php 
 
+require 'PHPMailerAutoload.php';
+
+
 /**
- * @author Naafiyad Menberu (@NafMKD)
+ * @author Nafiyad Menberu (@NafMKD)
  *
  * Fetch class
  */
@@ -306,6 +309,45 @@ class fetch extends db
 		}else{
 			return 0;
 		}
+	}
+
+	/**
+	 * Send Verification Email
+	 * @param string $fullName -> Full Name of The User
+	 * @param email $email -> Email of the user Also Email use as username in login time
+	 */
+	public function sendPassEmail($email){
+
+			// generating random number 
+			$random = mt_rand(100000, 999999);
+
+			// sending email
+			$mail = new PHPMailer;
+			$mail->isSMTP();                                      
+			$mail->Host = 'smtp.gmail.com';  
+			$mail->SMTPAuth = true;                              
+			$mail->Username = 'guchemenberu32@gmail.com';                
+			$mail->Password = 'gugu1621M';                           
+			$mail->SMTPSecure = 'tls';                            
+			$mail->Port = 587;                                    
+
+			//fetching data 
+			$userData = $this->fethUserDeail("EMAIL", $email)[0];
+
+			$mail->setFrom('guchemenberu32@gmail.com', 'Expence Manager');
+			$mail->addAddress($email, $userData['fullName']);   
+
+			$mail->isHTML(true); 
+
+			$mail->Subject = 'Password Reset!';
+			$mail->Body    = 'Verification code <b>'.$random.'</b>';
+			$mail->AltBody = 'use this link to insert the verification code <a href="http://expensem.herokuapp.com/change.php?email='.$email.'&token='.md5($userData['password']).'> click here </a>';
+
+			$mail->send();
+
+			// inserting to db
+			mysqli_query($this->conn(), "UPDATE user_detail SET passCode = '$random' WHERE email = '$email'");
+		
 	}
 
 }
