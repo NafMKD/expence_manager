@@ -6,15 +6,15 @@
 class db
 {
 	
-	private $host = "localhost";
+	/*private $host = "localhost";
 	private $user = "root";
 	private $pwd = "";
 	private $dbname = "project";
-	/*
+	*/
 	private $host = "remotemysql.com";
 	private $user = "KXH2lfLQyx";
 	private $pwd = "zQ1DhT9T9u";
-	private $dbname = "KXH2lfLQyx";*/
+	private $dbname = "KXH2lfLQyx";
 
 	protected $emailSend = 'guchemenberu32@gmail.com';
 	protected $passSend = 'gugu1621M';
