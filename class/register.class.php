@@ -115,17 +115,14 @@ class register extends db
 		$date = $this->dateGenenetor("m/d/Y");
 		$fullName = mysqli_real_escape_string($this->conn(), ucfirst($fullName));
 		$email = mysqli_real_escape_string($this->conn(), $email);
-		$password = mysqli_real_escape_string($this->conn(), $password);
-
-		// appling md5 hash to password string 
-		$password = md5($password);
-
+		$password = mysqli_real_escape_string($this->conn(), md5($password));
 		
 
 		//checking the email 
 
 		$queryF = mysqli_query($this->conn(),"SELECT * FROM user_detail WHERE email = '$email' ");
 		$rowF = mysqli_fetch_assoc($queryF);
+		print_r($rowF);
 
 		if (count($rowF) > 0) {
 			return 2;
