@@ -20,7 +20,7 @@ class db
 	private $dbname = "KXH2lfLQyx";
 
 	protected $emailSend = 'guchemenberu32@gmail.com';
-	protected $passSend = 'gugu1621M';
+	protected $passSend = '';
 
 	protected function conn(){
 		$db = mysqli_connect($this->host, $this->user, $this->pwd, $this->dbname);
